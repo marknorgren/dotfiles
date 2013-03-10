@@ -207,7 +207,7 @@ sudo nvram boot-args="mbasd=1"
 chflags nohidden ~/Library
 
 ###############################################################################
-# Dock & hot corners                                                          #
+# Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
 # Set the icon size of Dock items to 36 pixels
@@ -233,8 +233,11 @@ defaults write com.apple.dock "expose-group-by-app" -bool false
 defaults write com.apple.dock "dashboard-in-overlay" -bool true
 
 
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
 # Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
 defaults write com.apple.dock autohide-time-modifier -float 0
 
