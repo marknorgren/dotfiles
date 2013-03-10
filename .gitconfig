@@ -183,9 +183,5 @@
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
 
-[url "git://gist.github.com/"]
-
-	insteadOf = "gist:"
-[user]
-	name = Mark Norgren
-	email = mark@maknorgren.com
+[push]
+	default = simple
