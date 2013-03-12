@@ -29,7 +29,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
-# Set highlight color to orange
+# Set highlight color to green
 defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
 
 # Set sidebar icon size to medium
