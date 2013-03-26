@@ -134,29 +134,29 @@ function digga() {
 
 # UTF-8-encode a string of Unicode symbols
 function escape() {
-	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
+	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u)
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
+		echo # newline
+	fi
 }
 
 # Decode \x{ABCD}-style Unicode escape sequences
 function unidecode() {
-	perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
+	perl -e "binmode(STDOUT, ':utf8'); print \"$@\""
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
+		echo # newline
+	fi
 }
 
 # Get a character’s Unicode code point
 function codepoint() {
-	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
+	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))"
 	# print a newline unless we’re piping the output to another program
 	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
+		echo # newline
+	fi
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
