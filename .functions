@@ -51,7 +51,17 @@ function cdf() { # short for `cdfinder`
 
 # Create a .tar.gz archive, using `zopfli` or `gzip` for compression
 function targz() {
-	if zopfli > /dev/null 2>&1; then
+	local tmpFile="${@%/}.tar"
+	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
+
+	size=$(
+		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
+		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
+	)
+
+	local cmd=""
+	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+		# the .tar file is smaller than 50 MB and Zopfli is available; use it
 		cmd="zopfli"
 	else
 		cmd="gzip"
