@@ -146,4 +146,4 @@
 	pushInsteadOf = "git://gist.github.com/"
 
 [push]
-	default = simple
+	default = matching
