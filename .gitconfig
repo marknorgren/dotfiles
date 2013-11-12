@@ -186,3 +186,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Mark Norgren
+	email = mark@maknorgren.com
