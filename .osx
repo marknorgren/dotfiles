@@ -8,6 +8,36 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+
+
+###############################################################################
+# System                                                              #
+###############################################################################
+# Restart automatically if the computer freezes
+systemsetup -setrestartfreeze on
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Disable Resume system-wide
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Disable Resume system-wide
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+
 # Disable Boot Chime
 # referenece: http://osxdaily.com/2012/11/04/disable-mac-boot-chime/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+osxdaily+%28OS+X+Daily%29
 nvram SystemAudioVolume=%80
@@ -36,20 +66,20 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Disable the “Are you sure you want to open this application?” dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-
-# Disable Resume system-wide
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
-
-# Disable automatic termination of inactive apps
-defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 # Never go into computer sleep mode
-systemsetup -setcomputersleep Off > /dev/null
+#systemsetup -setcomputersleep Off > /dev/null
 
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Menu bar: show remaining battery time (on pre-10.8); hide percentage
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults write com.apple.menuextra.battery ShowTime -string "YES"
+
+# Set sidebar icon size to small
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
+
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -91,6 +121,12 @@ defaults write com.apple.screencapture type -string "png"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
+
+# Enable subpixel font rendering on non-Apple LCDs
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 ###############################################################################
 # Finder                                                                      #
@@ -149,10 +185,15 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
 
-# Increase the size of icons on the desktop and in other icon views
+
+ # Decrease the size of icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 30" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 30" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 30" ~/Library/Preferences/com.apple.finder.plist
+
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
@@ -200,6 +241,25 @@ defaults write com.apple.dock showhidden -bool true
 
 # Enable iTunes track notifications in the Dock
 defaults write com.apple.dock itunes-notifications -bool true
+
+ # Wipe all (default) app icons from the Dock
+ # This is only really useful when setting up a new Mac, or if you don’t use
+ # the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array
+
+
+# Add iOS Simulator to Launchpad
+# ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
+ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
+
+# Add a spacer to the left side of the Dock (where the applications are)
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# Add a spacer to the right side of the Dock (where the Trash is)
+# defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
 
 # Reset Launchpad
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
@@ -285,10 +345,10 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 ###############################################################################
 # Setup subl terminal alias
 # http://www.sublimetext.com/docs/2/osx_command_line.html
-ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 # The above line doesn't work if using RVM
 # via stackoverflow: http://stackoverflow.com/a/11287024/406
-ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/.rvm/bin/subl
+#ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/.rvm/bin/subl
 
 ###############################################################################
 # Kill affected applications                                                  #
