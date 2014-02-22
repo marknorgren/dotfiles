@@ -1,7 +1,5 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" Use the Molokai theme (originally created for TextMate by Wimer Hazenberg)
+colorscheme molokai
 
 " Make Vim more useful
 set nocompatible
