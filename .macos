@@ -172,10 +172,15 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
+
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
+# normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain KeyRepeat -int 1
+
+# InitialKeyRepeat normal minimum is 15 (225ms)
+# https://apple.stackexchange.com/a/83923/123
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Set language and text formats
