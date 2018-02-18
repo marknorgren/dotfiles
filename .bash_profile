@@ -10,7 +10,11 @@ if [ -f ~/.profile ]; then
    source ~/.profile
 fi
 
-# Xcode helper commands
+
+# Xcode
+alias simDir="/Users/$(whoami)/Library/Developer/CoreSimulator/Devices/"
+alias provisioningProfilesDir="~/Library/MobileDevice/Provisioning\ Profiles/"
+## Xcode helper commands
 if [ -f ~/.xcode_bash.sh ]; then
   source ~/.xcode_bash.sh
 fi
