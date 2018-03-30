@@ -3,13 +3,20 @@ function __git_branch {
 }
 
 function __git_dirty {
-  if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] || [[ $(git status) != "fatal: Not a git repository (or any of the parent directories): .git" ]] ; then
+  #echo $(git status)
+  GIT_STATUS=$(git status 2>&1)
+  if [[  $GIT_STATUS == *"fatal: Not a git repository (or any of the parent directories): .git"* ]] ; then
+    return
+  fi
+  if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]]  ; then
     echo " •"
   fi
+
+
 }
 
 function __minutes_since_last_commit_with_branch {
-  echo `ruby -e "git_status = (%x{git status 2> /dev/null}); last_commit = (%x{git log --pretty=format:'%at' -1 2> /dev/null}).gsub(/^\* (.+)$/, '(\1) '); seconds = Time.now.to_f - last_commit.to_f; minutes = seconds.to_f / 60; ((seconds > 60*60*2) ? (time_since_commit = ('+2h')) : (time_since_commit = minutes.to_i.to_s + 'm') if (git_status != ''));print (%x{git branch 2> /dev/null}.split(%r{\n}).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(' + time_since_commit.to_s + '|\1) ')"`
+  echo `ruby -e "git_status = (%x{git status 2> /dev/null}); last_commit = (%x{git log --pretty=format:'%at' -1 2> /dev/null}).gsub(/^\* (.+)$/, '(\1) '); seconds = Time.now.to_f - last_commit.to_f; minutes = seconds.to_f / 60; ((seconds > 60*60*2) ? (time_since_commit = '~' + (minutes.to_i / 60).to_s + 'h') : (time_since_commit = minutes.to_i.to_s + 'm') if (git_status != ''));print (%x{git branch 2> /dev/null}.split(%r{\n}).grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(' + time_since_commit.to_s + '|\1) ')"`
 }
 
 
