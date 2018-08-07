@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # git helpers
 # Awesome function to generate .gitignore via gitignore.io
 # via: https://github.com/kqr/gists/blob/master/utils/gi
@@ -24,6 +25,12 @@ function gi() {
 # Because I Swift a lot
 function giswift() {
   gi swift,xcode
+}
+
+function gitCleanMergedBranches() {
+	MERGED_BRANCHES=$(git branch --merged)
+	echo "Meged Branches: $MERGED_BRANCHES"
+	$MERGED_BRANCHES | egrep -v "(^\*|master|appstore)" | xargs git branch -d;
 }
 
 # Create a new directory and enter it
