@@ -3,29 +3,7 @@ ws() {
 }
 
 openxc() {
-    searchDepth=2
-    fileToOpen='';
-    for file in `find . -maxdepth $searchDepth -name *.xcworkspace`; do
-        fileToOpen=$file
-    done
-
-    if [ -n "$fileToOpen" ]
-    then
-        echo $fileToOpen
-        open $fileToOpen
-    else
-        for file in `find . -maxdepth $searchDepth -name *.xcodeproj`; do
-            fileToOpen=$file
-        done
-
-        if [ -n "$fileToOpen" ]
-        then
-            echo $fileToOpen
-            open $fileToOpen
-        else
-            echo "No Xcode projects or workspaces found."
-        fi
-    fi
+    xed .
 }
 
 ox() {
