@@ -23,9 +23,12 @@ function git-status() {
 		# Only interested in directories
 		[ -d "${f}" ] || continue
 
-		echo -en "\033[0;35m"
-		echo "${f}"
-		echo -en "\033[0m"
+		# Print path
+		PRINT_PATH=0
+		CURRENT_DIR=${f}
+		# echo -en "\033[0;35m"
+		# echo "${f}"
+		# echo -en "\033[0m"
 
 		# Check if directory is a git repository
 		if [ -d "$f/.git" ]
@@ -36,6 +39,7 @@ function git-status() {
 			# Check for modified files
 			if [ $(git status | grep modified -c) -ne 0 ]
 			then
+				$PRINT_PATH=1
 				mod=1
 				echo -en "\033[0;31m"
 				echo "Modified files"
@@ -46,25 +50,34 @@ function git-status() {
 			if [ $(git status | grep Untracked -c) -ne 0 ]
 			then
 				mod=1
+				$PRINT_PATH=1
 				echo -en "\033[0;31m"
 				echo "Untracked files"
 				echo -en "\033[0m"
 			fi
 
 			# Check if everything is peachy keen
-			if [ $mod -eq 0 ]
-			then
-				echo "Nothing to commit"
-			fi
+			# if [ $mod -eq 0 ]
+			# then
+			# 	echo "Nothing to commit"
+			# fi
 
 			# Check for unpushed changes
         	if [ $(git status | grep 'Your branch is ahead' -c) -ne 0 ]
         	then
             	mod=1
+            	$PRINT_PATH=1
             	echo -en "\033[0;31m"
             	echo "Unpushed commit"
             	echo -en "\033[0m"
         	fi
+
+        	if [[ "${PRINT_PATH}" -eq true ]]; then
+    			echo -en "\033[0;35m"
+				echo "${f}"
+				echo -en "\033[0m"
+			fi
+
 			cd ../
 		fi
 
