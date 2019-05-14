@@ -10,6 +10,11 @@ if [ -f ~/.profile ]; then
    source ~/.profile
 fi
 
+# docker-compose
+alias ddb='docker-compose down && docker-compose build'
+
+# Android Home Setup
+export ANDROID_HOME=~/Library/Android/sdk/
 
 # Xcode
 alias simDir="/Users/$(whoami)/Library/Developer/CoreSimulator/Devices/"
