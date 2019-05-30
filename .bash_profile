@@ -10,8 +10,16 @@ if [ -f ~/.profile ]; then
    source ~/.profile
 fi
 
-# docker-compose
+# Docker
+
+## docker-compose
 alias ddb='docker-compose down && docker-compose build'
+
+## Docker Cleanup
+function docker-cleanup {
+    docker rm $(docker ps -a -q);
+    docker rmi $(docker images | grep "^<none>" | awk '{print $3}');
+}
 
 # Android Home Setup
 export ANDROID_HOME=~/Library/Android/sdk/
