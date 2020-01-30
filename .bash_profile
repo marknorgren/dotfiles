@@ -86,7 +86,12 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
-# Xcode helper commands
-if [ -f ~/.xcode_bash.sh ]; then
-  source ~/.xcode_bash.sh
-fi
+source ~/.bashrc
+
+export PATH
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
