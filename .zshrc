@@ -1,11 +1,5 @@
-echo ".zschrc"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Fastlane
-export PATH="$HOME/.fastlane/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mark/.oh-my-zsh"
@@ -108,6 +102,3 @@ source ~/working/dotfiles/zshrc.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-
