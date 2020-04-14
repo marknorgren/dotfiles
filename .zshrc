@@ -1,11 +1,14 @@
+echo ".zschrc"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# fastlane
-export PATH="$HOME/.fastlane/bin:$PATH" 
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/mark/.oh-my-zsh"
 
 # ruby
-
 export PATH="$PATH:/usr/bin:/usr/local/bin/"
 
 # Path to your oh-my-zsh installation.
@@ -84,10 +87,6 @@ plugins=(git
 source $ZSH/oh-my-zsh.sh
 source ~/working/dotfiles/zshrc.sh
 
-# Ruby
-
-export PATH ="/usr/local/bin:/usr/local/sbin: $PATH"
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -113,3 +112,23 @@ export PATH ="/usr/local/bin:/usr/local/sbin: $PATH"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+## Xcode
+echo $(xcodebuild -version)
+
+## Ruby
+
+# https://github.com/postmodern/chruby
+# https://install-rails-mac.com/#install-ruby-install-and-chruby
+source /usr/local/share/chruby/chruby.sh
+chruby ruby-2.7
+source /usr/local/share/chruby/auto.sh
+echo $(ruby -v)
+#export GEM_HOME=$HOME/.gem
+#export PATH=$GEM_HOME/bin:$PATH
+
+## fastlane
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8export PATH="/usr/local/sbin:$PATH"
