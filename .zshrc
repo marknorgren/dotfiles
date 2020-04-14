@@ -1,6 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# fastlane
+export PATH="$HOME/.fastlane/bin:$PATH" 
+
+# ruby
+
+export PATH="$PATH:/usr/bin:/usr/local/bin/"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mark/.oh-my-zsh"
 
@@ -76,6 +83,10 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 source ~/working/dotfiles/zshrc.sh
+
+# Ruby
+
+export PATH ="/usr/local/bin:/usr/local/sbin: $PATH"
 
 # User configuration
 
