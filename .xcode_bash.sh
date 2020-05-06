@@ -2,6 +2,10 @@ ws() {
     open *.xcworkspace
 }
 
+usexcode() {
+    ~/working/dotfiles/xcode/use_xcode.sh $1
+}
+
 openxc() {
     xed .
 }
