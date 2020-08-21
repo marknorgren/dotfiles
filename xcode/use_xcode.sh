@@ -79,7 +79,7 @@ function set_version() {
 
 # Check for input
 if [[ -n "$1" ]]; then
-    set_version "${1/./-}"
+    set_version "${1/./.}"
     true
 else
     echo "Current:"

@@ -121,10 +121,10 @@ echo $(xcodebuild -version)
 
 # https://github.com/postmodern/chruby
 # https://install-rails-mac.com/#install-ruby-install-and-chruby
-source /usr/local/share/chruby/chruby.sh
-chruby ruby-2.7
-source /usr/local/share/chruby/auto.sh
-echo $(ruby -v)
+#source /usr/local/share/chruby/chruby.sh
+#chruby ruby-2.7
+#source /usr/local/share/chruby/auto.sh
+#echo $(ruby -v)
 #export GEM_HOME=$HOME/.gem
 #export PATH=$GEM_HOME/bin:$PATH
 
