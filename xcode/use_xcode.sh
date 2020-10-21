@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Name your Xcode versions as `Xcode_<xcode_version>.app`
-# e.g. - `Xcode_11-4-1`, `Xcode_11-3-1`
+# Name your Xcode versions as `Xcode_<X.Y.Z>.app`
+# X = Major, Y = Minor, Z = Patch
+# e.g. - `Xcode_11.7.app`, `Xcode_11.3.1`
 
 # This will symlink `/Applications/Xcode.app` to your selected version
 
