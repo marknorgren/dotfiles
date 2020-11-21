@@ -1,5 +1,9 @@
 echo ".zschrc"
 
+# brew
+export PATH="/opt/homebrew/bin:$PATH"
+
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # If you come from bash you might have to change your $PATH.
@@ -115,16 +119,16 @@ source ~/working/dotfiles/zshrc.sh
 
 
 ## Xcode
-echo $(xcodebuild -version)
+# echo $(xcodebuild -version)
 
 ## Ruby
 
 # https://github.com/postmodern/chruby
 # https://install-rails-mac.com/#install-ruby-install-and-chruby
-#source /usr/local/share/chruby/chruby.sh
-#chruby ruby-2.7
-#source /usr/local/share/chruby/auto.sh
-#echo $(ruby -v)
+# source /usr/local/share/chruby/chruby.sh
+# chruby ruby-2.7
+# source /usr/local/share/chruby/auto.sh
+echo $(ruby -v)
 #export GEM_HOME=$HOME/.gem
 #export PATH=$GEM_HOME/bin:$PATH
 
