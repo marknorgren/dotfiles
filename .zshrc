@@ -15,6 +15,9 @@ export ZSH="/Users/mark/.oh-my-zsh"
 # ruby
 export PATH="$PATH:/usr/bin:/usr/local/bin/"
 
+# cargo
+export PATH="$PATH:/Users/mark/.cargo/bin"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mark/.oh-my-zsh"
 
@@ -136,3 +139,63 @@ echo $(ruby -v)
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8export PATH="/usr/local/sbin:$PATH"
+
+# ASDF
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+
+## arch
+alias mzsh="arch -arm64 zsh"
+alias izsh="arch -x86_64 zsh"
+
+
+## Separate homebrew for
+## i386 / arm64
+if [ "$(uname -p)" = "i386" ]; then
+  echo "Running in i386 mode (Rosetta)"
+  eval "$(/usr/local/homebrew/bin/brew shellenv)"
+  alias brew='/usr/local/homebrew/bin/brew'
+else
+  echo "Running in ARM mode (M1)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  alias brew='/opt/homebrew/bin/brew'
+fi
+
+
+source ~/working/dotfiles/secrets
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+# Created by `pipx` on 2022-05-10 19:09:39
+export PATH="$PATH:~/.local/bin"
+
+
+
+# direnv
+eval "$(direnv hook zsh)"
+
+## Anaconda
+# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
+export PATH=/opt/homebrew/anaconda3/bin:$PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
