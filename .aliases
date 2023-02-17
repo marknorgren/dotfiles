@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Python
+alias python=python3
+alias pip=pip3
+
+# ag search
+alias ag='ag --hidden'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
