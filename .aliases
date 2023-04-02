@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# .DS_Store cleanup
+alias clean-dsstore="find . -name '.DS_Store' -exec rm -f {} \; && echo -e '\n.DS_Store' >> .gitignore"
+
 # Python
 alias python=python3
 alias pip=pip3
