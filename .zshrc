@@ -120,82 +120,16 @@ source ~/working/dotfiles/zshrc.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ytdl="yt-dlp yt-dlp -S res,ext:mp4:m4a --recode mp4"
 
-## Xcode
-# echo $(xcodebuild -version)
-
-## Ruby
-
-# https://github.com/postmodern/chruby
-# https://install-rails-mac.com/#install-ruby-install-and-chruby
-# source /usr/local/share/chruby/chruby.sh
-# chruby ruby-2.7
-# source /usr/local/share/chruby/auto.sh
-echo $(ruby -v)
-#export GEM_HOME=$HOME/.gem
-#export PATH=$GEM_HOME/bin:$PATH
-
-## fastlane
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8export PATH="/usr/local/sbin:$PATH"
-
-# ASDF
+# asdf
+# https://mac.install.guide/ruby/5.html
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-
-## arch
-alias mzsh="arch -arm64 zsh"
-alias izsh="arch -x86_64 zsh"
-
-
-## Separate homebrew for
-## i386 / arm64
-if [ "$(uname -p)" = "i386" ]; then
-  echo "Running in i386 mode (Rosetta)"
-  eval "$(/usr/local/homebrew/bin/brew shellenv)"
-  alias brew='/usr/local/homebrew/bin/brew'
-else
-  echo "Running in ARM mode (M1)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  alias brew='/opt/homebrew/bin/brew'
-fi
-
-
-source ~/working/dotfiles/secrets
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PATH="/opt/homebrew/opt/dotnet@6/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
-
-# Created by `pipx` on 2022-05-10 19:09:39
-export PATH="$PATH:~/.local/bin"
-
-
-
-# direnv
-eval "$(direnv hook zsh)"
-
-## Anaconda
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
-export PATH=/opt/homebrew/anaconda3/bin:$PATH
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh

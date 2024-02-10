@@ -25,7 +25,8 @@ alias dt="cd ~/Desktop"
 alias wd="cd ~/working"
 alias p="cd ~/projects"
 alias g="git"
-alias h="history"
+alias h="cd ~"
+alias hist="history"
 alias j="jobs"
 
 # Detect which `ls` flavor is in use
@@ -171,5 +172,23 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Faster npm for europeans
-command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+
+# Date/time stamps: ISO 8601, RFC 3339
+alias now="date +%Y-%m-%dT%H:%M:%S%z"
+alias nowtime="now | cut -d'T' -f 2 | cut -b 1-8"
+alias nowdate="now | cut -d'T' -f 1"
+alias currenttime="date -u '+%Y-%m-%dT%H:%M:%SZ'"
+alias localtime="date '+%Y-%m-%dT%H:%M:%S%z'"
+alias timestamp="date '+%Y%m%d%H%M%S'"
+alias ts="date '+%Y%m%d%H%M%S'"
+alias datea="date '+%Y-%m-%d %I:%M:%S %p %Z'"
+alias iso8601="date -u '+%Y-%m-%dT%H:%M:%S%z'"
+
+# Output all aliased date/time stamps
+func () {
+  alias | grep -E 'now|time|date'
+}
+
