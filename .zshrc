@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # # Export PATH efficiently, avoid duplication
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
@@ -5,14 +7,14 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 # # Set a fixed theme for faster load, remove if using 'random' theme is not needed
-ZSH_THEME="robbyrussell"
+export ZSH_THEME="robbyrussell"
 
 # # Enable plugins (only keep essential ones for faster startup)
-plugins=(git)
+export plugins=(git)
 
 # # Source oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-source ~/working/dotfiles/zshrc.sh
+source "$ZSH/oh-my-zsh.sh"
+source "${HOME}/working/dotfiles/zshrc.sh"
 
 # # Lazy loading of nvm, pyenv, asdf
 autoload -U add-zsh-hook
